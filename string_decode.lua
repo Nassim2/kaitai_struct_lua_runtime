@@ -2,6 +2,8 @@
 -- String decoder functions
 --
 
+local utf8 = require 'lua-utf8'
+
 local stringdecode = {}
 
 -- From http://lua-users.org/wiki/LuaUnicode
@@ -36,7 +38,6 @@ function stringdecode.decode(str, encoding)
         return str
     elseif enc == "utf-8" then
         local code_points = utf8_to_32(str)
-
         return utf8.char(table.unpack(code_points))
     else
         error("Encoding " .. encoding .. " not supported")
